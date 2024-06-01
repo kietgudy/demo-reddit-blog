@@ -62,6 +62,10 @@
     object-fit: cover;
     overflow: hidden;
   }
+  .input-image:hover {
+    transform: translateY(-1px);
+    background-color: rgb(225, 225, 225);
+  }
   
   .theme-container {
       display: flex;

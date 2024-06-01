@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Edit.css";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../Input/Input";
-import { update } from "../../redux/userSlice";
+import { updateUser } from "../../redux/apiRequest";
 const EditPage = (props) => {
   const { setIsEdit } = props;
   const avtUrl = [
@@ -22,15 +22,19 @@ const EditPage = (props) => {
   const [name, setName] = useState(user.name);
   const [age, setAge] = useState(user.age);
   const [about, setAbout] = useState(user.about);
-  const [url, setUrl] = useState(
-    user.url
-  );
+  const [url, setUrl] = useState(user.url);
   const [theme, setTheme] = useState("#f36625");
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsEdit(false);
-    const updateUser = { name: name, age: age, about: about, url: url, theme:theme };
-    dispatch(update(updateUser))
+    const updatedUser = {
+      name: name,
+      age: age,
+      about: about,
+      url: url,
+      theme: theme,
+    };
+    updateUser(updatedUser, dispatch);
   };
   return (
     <>
@@ -57,7 +61,6 @@ const EditPage = (props) => {
                       onClick={(e) => setUrl(e.target.src)}
                       src={item}
                       className="input-image"
-                      alt="image"
                     />
                   </>
                 );
